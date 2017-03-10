@@ -1,7 +1,7 @@
  {
         "manifestVersion": 1,
         "id": "commitnetwork",
-        "version": "0.1.1",
+        "version": "0.1.4",
         "name": "Commit Network",
         "description": "Graphical view of git commit network.",
         "publisher": "swapme3",
