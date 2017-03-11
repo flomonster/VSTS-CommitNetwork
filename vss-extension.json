@@ -1,52 +1,52 @@
 {
-  "manifestVersion": 1,
-  "id": "commitnetwork",
-  "version": "0.1.8",
-  "name": "Commit Network",
-  "description": "Graphical view of git commit network.",
-  "publisher": "swapme3",
-  "targets": [
-    {
-      "id": "Microsoft.VisualStudio.Services"
-    }
-  ],
-  "icons": {
-    "default": "images/logo.png"
-  },
-  "contributions": [
-    {
-      "id": "swapme3.commitnetwork.network",
-      "type": "ms.vss-web.hub",
-      "description": "Adds a commit graph hub to the Code hub group.",
-      "targets": [
-        "ms.vss-code-web.code-hub-group"
-      ],
-      "properties": {
-        "name": "Network",
-        "order": 30,
-        "uri": "network.html"
-      }
-    }
-  ],
   "scopes": [
     "vso.work"
   ],
   "files": [
     {
-      "path": "network.html",
-      "addressable": true
+      "addressable": true,
+      "path": "network.html"
     },
     {
-      "path": "scripts",
-      "addressable": true
+      "addressable": true,
+      "path": "scripts"
     },
     {
-      "path": "sdk/scripts",
-      "addressable": true
+      "addressable": true,
+      "path": "sdk/scripts"
     },
     {
-      "path": "images/logo.png",
-      "addressable": true
+      "addressable": true,
+      "path": "images/logo.png"
+    }
+  ],
+  "contributions": [
+    {
+      "properties": {
+        "uri": "network.html",
+        "order": 30,
+        "name": "Network"
+      },
+      "targets": [
+        "ms.vss-code-web.code-hub-group"
+      ],
+      "description": "Adds a commit graph hub to the Code hub group.",
+      "type": "ms.vss-web.hub",
+      "id": "swapme3.commitnetwork.network"
+    }
+  ],
+  "id": "commitnetwork",
+  "manifestVersion": 1,
+  "version": "0.1.21",
+  "description": "Graphical view of git commit network.",
+  "name": "Commit Network",
+  "publisher": "swapme3",
+  "icons": {
+    "default": "images/logo.png"
+  },
+  "targets": [
+    {
+      "id": "Microsoft.VisualStudio.Services"
     }
   ]
 }
