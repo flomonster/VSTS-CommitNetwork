@@ -1,48 +1,52 @@
- {
-        "manifestVersion": 1,
-        "id": "commitnetwork",
-        "version": "0.1.4",
-        "name": "Commit Network",
-        "description": "Graphical view of git commit network.",
-        "publisher": "swapme3",
-        "targets": [
-            {
-                "id": "Microsoft.VisualStudio.Services"
-                }
-            ],
-        "icons": {
-            "default": "images/logo.png"
-         },
-        "contributions": [
-            {
-                "id": "swapme3.commitnetwork.network",
-                "type": "ms.vss-web.hub",
-                "description": "Adds a commit graph hub to the Code hub group.",
-                "targets": [
-                    "ms.vss-code-web.code-hub-group"
-                    ],
-                "properties": {
-                    "name": "Network",
-                    "order": 30,
-                    "uri": "network.html"
-                }
-            }
-        ],
-        "scopes": [
-            "vso.work"
-        ],
-        "files": [
-            {
-                "path": "network.html", "addressable": true
-            },
-            {
-                "path": "scripts", "addressable": true
-            },
-            {
-                "path": "sdk/scripts", "addressable": true
-            },
-            {
-                "path": "images/logo.png", "addressable": true
-            }
-        ]
+{
+  "manifestVersion": 1,
+  "id": "commitnetwork",
+  "version": "0.1.8",
+  "name": "Commit Network",
+  "description": "Graphical view of git commit network.",
+  "publisher": "swapme3",
+  "targets": [
+    {
+      "id": "Microsoft.VisualStudio.Services"
     }
+  ],
+  "icons": {
+    "default": "images/logo.png"
+  },
+  "contributions": [
+    {
+      "id": "swapme3.commitnetwork.network",
+      "type": "ms.vss-web.hub",
+      "description": "Adds a commit graph hub to the Code hub group.",
+      "targets": [
+        "ms.vss-code-web.code-hub-group"
+      ],
+      "properties": {
+        "name": "Network",
+        "order": 30,
+        "uri": "network.html"
+      }
+    }
+  ],
+  "scopes": [
+    "vso.work"
+  ],
+  "files": [
+    {
+      "path": "network.html",
+      "addressable": true
+    },
+    {
+      "path": "scripts",
+      "addressable": true
+    },
+    {
+      "path": "sdk/scripts",
+      "addressable": true
+    },
+    {
+      "path": "images/logo.png",
+      "addressable": true
+    }
+  ]
+}

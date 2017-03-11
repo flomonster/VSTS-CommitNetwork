@@ -22,5 +22,8 @@ os.system("cat tmp > vss-extension.json")
 os.remove("tmp")
 os.system("rm -r *~")
 
-# Package
-os.system("tfx extension create --manifest-globs vss-extension.json")
+# Package & Publish
+os.system("tfx extension publish --manifest-globs vss-extension.json --share-with extension-westworld < token")
+
+# Remove package
+os.system("rm  *.vsix")
