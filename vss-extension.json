@@ -37,7 +37,7 @@
   ],
   "id": "commitnetwork",
   "manifestVersion": 1,
-  "version": "0.1.21",
+  "version": "0.1.37",
   "description": "Graphical view of git commit network.",
   "name": "Commit Network",
   "publisher": "swapme3",
