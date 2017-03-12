@@ -1,14 +1,24 @@
-var account = "extension-westworld";
-var repository = "e3bd020e-a357-42f3-8da2-fb5880201dbd";
+ VSS.require(["VSS/Service", "TFS/WorkItemTracking/RestClient"], function (VSS_Service, TFS_Wit_WebApi) {
+    var witClient = VSS_Service.getCollectionClient(TFS_Wit_WebApi.WorkItemTrackingHttpClient);
+    console.log(witClient);
 
-var url = "https://" + account + ".visualstudio.com/DefaultCollection/_apis/git/repositories/";
-url += repository + "/commits?api-version=1.0";
+    var repository = "e3bd020e-a357-42f3-8da2-fb5880201dbd";
 
-var xhr = new XMLHttpRequest();
-xhr.open("GET", url, true);
+    var url = witClient._rootRequestPath + "DefaultCollection/_apis/git/repositories/";
+    url += repository + "/commits?api-version=1.0";
 
-xhr.open('GET', '/api', true);
-xhr.send(null);
-//var response = JSON.parse(xhr.responseText);
-console.log(xhr.responseText);
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", url, true);
 
+    xhr.onload = function () {
+      if (xhr.status == 200)
+      {
+        console.log(xhr.responseText);
+        //var response = JSON.parse(xhr.responseText);
+      }
+      else
+        console.log("STATUS : " + xhr.status);
+    };
+
+    xhr.send(null);
+});
