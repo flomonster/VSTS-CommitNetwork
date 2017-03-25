@@ -1,6 +1,6 @@
 class Graph
 {
-  constructor(id, author, msg, date, url, children = [])
+  constructor(id, author, msg, date, url, children = [], merge = false)
   {
     this.id = id;
     this.author = author;
@@ -8,6 +8,7 @@ class Graph
     this.date = date;
     this.url = url;
     this.children = children;
+    this.merge = merge;
   }
 }
 
