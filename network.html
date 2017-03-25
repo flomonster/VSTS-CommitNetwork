@@ -1,12 +1,24 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title>Hello World</title>
+    <meta charset="UTF-8">
+  
+    <title>Commit Graph</title>
     <script src="sdk/scripts/VSS.SDK.js"></script>
+    <link rel="stylesheet" type="text/css" href="gitgraph/src/gitgraph.css" />
+    <!__ put here __>
+    <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+  </style>
 </head>
 <body>
-    <script type="text/javascript">VSS.init();</script>
-    <script src='scripts/network.js'></script>
-    <p id='commits_url'>Commits</p>
+    <canvas id="gitGraph"></canvas>
+    <script type="text/javascript">VSS.init();</script> 
+    <script src="gitgraph/src/gitgraph.js"></script>
+    <script src= "scripts/display.js"></script> 
 </body>
 </html>
