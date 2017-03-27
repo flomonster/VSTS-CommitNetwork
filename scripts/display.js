@@ -24,14 +24,14 @@ var config = {
   orientation: "horizontal"
 };
 
-function addChildren(stack, graph, currentBranch, gitgraph)
+function addChildren(stack, graph, branch, gitgraph)
 {
   if (graph.children.length)
   {
     stack.push([graph.children[0], branch]);
+    for (var i = 1; i < graph.children.length; i++)
+      stack.push([graph.children[i], gitgraph.branch({parentBranch: branch})]);
   }
-  for (int i = 1; i < graph.children.length; i++)
-    stack.push(graph.children[i], gitgraph.branch());
 }
 
 function displayGraph(graph)
@@ -45,16 +45,18 @@ function displayGraph(graph)
     if (graph.merge)
     {
       var find = false;
-      for (graph2 in tobemerge)
+      for (var i = 0; i < tobemerge.length; i++)
       {
-        if (graph2[0] == graph[0])
+        var tuple = tobemerge[i];
+        if (tuple[0] === graph)
         {
-          branch.merge(graph2[1], 
+          branch.merge(tuple[1], 
               {
                 sha1: graph.id,
                 message: graph.msg,
                 author: graph.author,
               });
+          addChildren(stack, graph, branch, gitgraph);
           find = true
           break;
         }
@@ -70,6 +72,7 @@ function displayGraph(graph)
         message: graph.msg,
         author: graph.author,
       });
+      addChildren(stack, graph, branch, gitgraph);
     }
   }
 }
