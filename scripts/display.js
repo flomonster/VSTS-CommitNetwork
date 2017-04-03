@@ -1,7 +1,7 @@
 var graphConfig = new GitGraph.Template({
           colors: ["#000000", " #0fa3af", " #ae0faf ","#0f11af","#b20714"],
           branch: {
-            lineWidth: 7,
+            lineWidth: 5,
             spacingX: 30,
             labelRotation: 0
           },
@@ -52,7 +52,10 @@ function displayGraph(graph)
         {
           branch.merge(tuple[1], 
               {
+                dotColor: branch.color,
                 sha1: graph.id,
+                dotSize: 10,
+                dotStrokeWidth: 10,
                 message: graph.msg,
                 author: graph.author,
               });
@@ -71,6 +74,11 @@ function displayGraph(graph)
         sha1: graph.id,
         message: graph.msg,
         author: graph.author,
+        url: graph.url,
+        onClick: function(commit) {
+          if (commit.url)
+            window.open(commit.url, "_blank");
+        }
       });
       addChildren(stack, graph, branch, gitgraph);
     }

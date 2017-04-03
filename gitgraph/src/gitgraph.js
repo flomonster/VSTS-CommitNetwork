@@ -1040,6 +1040,7 @@
     this.author = options.author || this.parent.author;
     this.date = options.date || new Date().toUTCString();
     this.detail = options.detail || null;
+    this.url = options.url || null;
     this.sha1 = options.sha1 || (Math.random(100)).toString(16).substring(3, 10);
     this.message = options.message || "He doesn't like George Michael! Boooo!";
     this.arrowDisplay = options.arrowDisplay;
