@@ -12,6 +12,12 @@ var graphConfig = new GitGraph.Template({
             },
             message: {
               font: "normal 14pt Arial"
+            },
+            shouldDisplayTooltipsInCompactMod: false,
+            tooltipHTMLFormatter: function (commit) {
+              return "<b>" + commit.author.substr(0, commit.author.indexOf('<')) + "</b>" +
+              "<div style=\"float: right;\">" + commit.sha1.substr(0, 7) + "</div><br>" +
+              commit.message;
             }
           }
          
