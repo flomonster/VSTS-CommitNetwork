@@ -1,6 +1,6 @@
 {
   "scopes": [
-    "vso.work"
+    "vso.code"
   ],
   "files": [
     {
@@ -37,7 +37,7 @@
   ],
   "id": "commitnetwork",
   "manifestVersion": 1,
-  "version": "0.2.12",
+  "version": "0.3.130",
   "description": "Graphical view of git commit network.",
   "name": "Commit Network",
   "publisher": "swapme3",
