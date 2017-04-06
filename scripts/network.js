@@ -14,8 +14,19 @@ VSS.require(["VSS/Service", "TFS/VersionControl/GitRestClient"], function (VSS_S
                     console.log("Too many commits");
                 else
                 {
-                    g = new Graph(commits[0].message, "swapme <athawale.1@iitj.ac.in>", "Merge to master", "23/03/2017", "https://www.google.fr/", [], true);
-                    displayGraph(g);
+                    console.log(commits[1].parents);
+                    var dic = {};
+                    for (var i = 0; i < commits.length; i++)
+                    {
+                        var merge = commits[i].parents && commits[i].parents.size() > 1;
+                        var date = commits[i].author.date.getFullYear();
+                        date = date * 100 + commits[i].author.date.getMonth();
+                        date = date * 100 + commits[i].author.date.getDate();
+                        date = date * 100 + commits[i].author.date.getHours();
+                        date = date * 100 + commits[i].author.date.getMinutes();
+                        date = date * 100 + commits[i].author.date.getSeconds();
+                        dic[commits[i].commitId] = new Graph(commits[i].commitId, commits[i].author.name, commits[i].comment, date, commits[i].remoteUrl, [], merge);
+                    }
                 }
             });
 
