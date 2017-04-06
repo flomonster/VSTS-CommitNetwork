@@ -20,7 +20,7 @@ var graphConfig = new GitGraph.Template({
               commit.message;
             }
           }
-         
+
         });
 
 
@@ -56,7 +56,7 @@ function displayGraph(graph)
         var tuple = tobemerge[i];
         if (tuple[0] === graph)
         {
-          branch.merge(tuple[1], 
+          branch.merge(tuple[1],
               {
                 dotColor: branch.color,
                 sha1: graph.id,
@@ -90,5 +90,3 @@ function displayGraph(graph)
     }
   }
 }
-
-displayGraph(test1);
