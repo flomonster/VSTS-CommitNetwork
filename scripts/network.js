@@ -1,3 +1,17 @@
+function linker(commits, dict)
+{
+  if (commits.length == dict.length)
+  {
+    for (var i = 0; i < commits.length; i++)
+    {
+      var commit = dic[commits[i].commitId];
+      for (var p in commits[i].parents)
+        dic[p].children.push(commit);
+    }
+    displayGraph(dic[commits[0].commitId]);
+  }
+}
+
 VSS.ready(() => {
 VSS.require(["VSS/Service", "TFS/VersionControl/GitRestClient"], function (VSS_Service, TFS_Git_WebApi)
    {
@@ -9,6 +23,7 @@ VSS.require(["VSS/Service", "TFS/VersionControl/GitRestClient"], function (VSS_S
           client.getCommits(repoId, null, null, null, 1000).then(
           function(commits)
           {
+            console.log(commits[800]);
             if (commits.length == 1000)
               console.log("Too many commits");
             else
@@ -29,15 +44,9 @@ VSS.require(["VSS/Service", "TFS/VersionControl/GitRestClient"], function (VSS_S
                   date = date * 100 + commits[i].author.date.getMinutes();
                   date = date * 100 + commits[i].author.date.getSeconds();
                   dic[commits[i].commitId] = new Graph(commits[i].commitId, commits[i].author.name, commits[i].comment, date, commits[i].remoteUrl, [], merge);
+                  linker(commits, dic);
                 });
               }
-              for (var i = 0; i < commits.length; i++)
-              {
-                var commit = dic[commits[i].commitId];
-                for (var p in commits[i].parents)
-                  dic[p].children.push(commit);
-              }
-              displayGraph(dic[commits[0].commitId]);
             }
           });
         });
