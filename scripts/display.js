@@ -47,6 +47,16 @@ function displayGraph(graph)
   var tobemerge = []
   while (stack.length)
   {
+    stack.sort(
+        function compare(a,b)
+        { 
+          if (a[0].date > b[0].date)
+            return -1;
+          if (a[0].date < b[0].date)
+            return 1;
+          return 0;
+        });
+
     [graph, branch] = stack.pop();
     if (graph.merge)
     {
@@ -56,9 +66,9 @@ function displayGraph(graph)
         var tuple = tobemerge[i];
         if (tuple[0] === graph)
         {
-          branch.merge(tuple[1],
+          tuple[1].merge(branch,
               {
-                dotColor: branch.color,
+                dotColor: tuple[1].color,
                 sha1: graph.id,
                 dotSize: 10,
                 dotStrokeWidth: 10,
@@ -89,4 +99,8 @@ function displayGraph(graph)
       addChildren(stack, graph, branch, gitgraph);
     }
   }
+  $("div#yourdiv").attr("overflow", "hidden");
+  setTimeout(function(){
+   $("div#yourdiv").attr("overflow", "auto"); // auto | initial
+  }, 1);
 }
