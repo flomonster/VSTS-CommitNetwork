@@ -34,16 +34,16 @@ function addChildren(stack, graph, branch, gitgraph)
 {
   if (graph.children.length)
   {
-    stack.push([graph.children[0], branch]);
+    stack.push([graph.children[0], branch, graph]);
     for (var i = 1; i < graph.children.length; i++)
-      stack.push([graph.children[i], gitgraph.branch({parentBranch: branch})]);
+      stack.push([graph.children[i], gitgraph.branch({parentBranch: branch}), graph]);
   }
 }
 
 function displayGraph(graph)
 {
   var gitgraph = new GitGraph(config);
-  var stack = [[graph, gitgraph.branch()]];
+  var stack = [[graph, gitgraph.branch(), null]];
   var tobemerge = []
   while (stack.length)
   {
@@ -66,16 +66,20 @@ function displayGraph(graph)
         var tuple = tobemerge[i];
         if (tuple[0] === graph)
         {
-          tuple[1].merge(branch,
+          branch1, branch2 = tuple[1], branch;
+          if (tuple[2].id == graph.parents[0])
+            branch2, branch1 = tuple[1], branch;
+
+          branch1.merge(branch2,
               {
-                dotColor: tuple[1].color,
+                dotColor: branch1.color,
                 sha1: graph.id,
                 dotSize: 10,
                 dotStrokeWidth: 10,
                 message: graph.msg,
                 author: graph.author,
               });
-          addChildren(stack, graph, branch, gitgraph);
+          addChildren(stack, graph, branch2, gitgraph);
           find = true
           break;
         }

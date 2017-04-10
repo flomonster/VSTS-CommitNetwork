@@ -16,7 +16,6 @@ VSS.require(["VSS/Service", "TFS/VersionControl/GitRestClient"], function (VSS_S
             else
             {
               var dic = {};
-              console.log(commits);
               for (var i = 0; i < commits.length; i++)
               {
                 client.getCommit(commits[i].commitId, repoId).then(
@@ -29,7 +28,6 @@ VSS.require(["VSS/Service", "TFS/VersionControl/GitRestClient"], function (VSS_S
                   date = date * 100 + commit.committer.date.getHours();
                   date = date * 100 + commit.committer.date.getMinutes();
                   date = date * 100 + commit.committer.date.getSeconds();
-                  console.log(date, commit.commitId);
                   dic[commit.commitId] = new Graph(commit.commitId, commit.author.name, commit.comment, date, commit.remoteUrl, [], commit.parents, merge);
                   if (commits.length == Object.keys(dic).length)
                   {
