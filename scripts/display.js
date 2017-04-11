@@ -44,7 +44,6 @@ function displayGraph(graph)
 {
   var gitgraph = new GitGraph(config);
   var stack = [[graph, gitgraph.branch(), null]];
-  var tobemerge = []
   while (stack.length)
   {
     stack.sort(
@@ -57,35 +56,23 @@ function displayGraph(graph)
           return 0;
         });
 
-    [graph, branch] = stack.pop();
+    [graph, branch, _] = stack.pop();
     if (graph.merge)
     {
-      var find = false;
-      for (var i = 0; i < tobemerge.length; i++)
-      {
-        var tuple = tobemerge[i];
-        if (tuple[0] === graph)
-        {
-          branch1, branch2 = tuple[1], branch;
-          if (tuple[2].id == graph.parents[0])
-            branch2, branch1 = tuple[1], branch;
+      [_, branch2, old]  = stack.pop();
+      if (old.id == graph.parents[1])
+        branch, branch2 = branch2, branch;
 
-          branch1.merge(branch2,
-              {
-                dotColor: branch1.color,
-                sha1: graph.id,
-                dotSize: 10,
-                dotStrokeWidth: 10,
-                message: graph.msg,
-                author: graph.author,
-              });
-          addChildren(stack, graph, branch2, gitgraph);
-          find = true
-          break;
-        }
-      }
-      if (!find)
-        tobemerge.push([graph, branch]);
+      branch.merge(branch2,
+          {
+            dotColor: branch.color,
+            sha1: graph.id,
+            dotSize: 10,
+            dotStrokeWidth: 10,
+            message: graph.msg,
+            author: graph.author,
+          });
+      addChildren(stack, graph, branch2, gitgraph);
     }
     else
     {
