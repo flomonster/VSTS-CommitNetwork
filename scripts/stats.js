@@ -1,16 +1,65 @@
-function displayStats(stats, labels)
+function displayStats(stats)
+{
+  displayPieChart(stats);
+  for (var i = 0; i < Object.keys(stats).length; i++)
+    document.getElementById("graphchart").innerHTML+= "<div \"class=\"ct-chart ct-perfect-fourth\" id=\"graphchart" + i + "\"></div>";
+
+  var i = 0;
+  for (key in stats)
+  {
+    displayGraphChart(stats[key], i);
+    i++;
+  }
+}
+
+function displayGraphChart(stats, i)
+{
+  var labels = [];
+  var series = [];
+  for (key in stats)
+  {
+    labels.push(key);
+    series.push(stats[key]);
+  }
+  new Chartist.Line('#graphchart' + i, {
+    labels: labels,
+    series: [series]
+  }, {
+    width:400, 
+    height:200,
+    low: 0,
+    showArea: true,
+    lineSmooth: Chartist.Interpolation.simple({
+    divisor: 2
+    }),
+    axisY: {
+      onlyInteger: true,
+      offset: 20
+    }
+  });
+}
+
+function displayPieChart(stats)
 {
   series = [];
   for (key in stats)
-    series.push(stats[key]);
+  {
+    var sum = 0;
+    for (date in stats[key])
+      sum += stats[key][date];
+    series.push(sum);
+  }
 
-  var chart = new Chartist.Pie('.ct-chart', {
+  var chart = new Chartist.Pie('#piechart', {
   series: series,
-  labels: labels
+  labels: series
   }, {
     donut: true,
-    showLabel: true
-  }, {width: 400, height: 400});
+    showLabel: true,
+    donutWidth: 30,
+    width: 300,
+    height: 300
+  });
 
 chart.on('draw', function(data) {
   if(data.type === 'slice') {
@@ -26,7 +75,7 @@ chart.on('draw', function(data) {
     var animationDefinition = {
       'stroke-dashoffset': {
         id: 'anim' + data.index,
-        dur: 1000,
+        dur: 2000,
         from: -pathLength + 'px',
         to:  '0px',
         easing: Chartist.Svg.Easing.easeOutQuint,
@@ -36,9 +85,8 @@ chart.on('draw', function(data) {
     };
 
     // If this was not the first slice, we need to time the animation so that it uses the end sync event of the previous animation
-    if(data.index !== 0) {
+    if(data.index !== 0)
       animationDefinition['stroke-dashoffset'].begin = 'anim' + (data.index - 1) + '.end';
-    }
 
     // We need to set an initial value before the animation starts as we are not in guided mode which would do that for us
     data.element.attr({
@@ -50,14 +98,4 @@ chart.on('draw', function(data) {
     data.element.animate(animationDefinition, false);
   }
 });
-
-// For the sake of the example we update the chart every time it's created with a delay of 8 seconds
-chart.on('created', function() {
-  if(window.__anim21278907124) {
-    clearTimeout(window.__anim21278907124);
-    window.__anim21278907124 = null;
-  }
-  window.__anim21278907124 = setTimeout(chart.update.bind(chart), 10000);
-});
-
 }

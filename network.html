@@ -9,11 +9,12 @@
     <script src="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
 </head>
 <body>
-
-    <div style="overflow: scroll;">
+  <div style="overflow-y: scroll;">
+    <div style="overflow-x: scroll;">
       <canvas id="gitGraph"></canvas>
     </div>
-    <div class="ct-chart ct-perfect-fourth"></div>
+    <div class="ct-chart ct-square" id="piechart"></div>
+    <div id="graphchart"></div>
 
     <script type="text/javascript">
       VSS.init({usePlatformScripts: true, usePlatformStyles: true});
@@ -24,5 +25,6 @@
     <script src= "scripts/display.js"></script> 
     <script src= "scripts/stats.js"></script> 
     <script src= "scripts/network.js"></script> 
-    </body>
+  </div>
+</body>
 </html>
