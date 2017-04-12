@@ -16,7 +16,6 @@ VSS.require(["VSS/Service", "TFS/VersionControl/GitRestClient"], function (VSS_S
             else
             {
               var stats = {};
-              var labels = [];
               var dic = {};
               for (var i = 0; i < commits.length; i++)
               {
@@ -31,20 +30,24 @@ VSS.require(["VSS/Service", "TFS/VersionControl/GitRestClient"], function (VSS_S
                   date = date * 100 + commit.committer.date.getMinutes();
                   date = date * 100 + commit.committer.date.getSeconds();
                   dic[commit.commitId] = new Graph(commit.commitId, commit.author.name, commit.comment, date, commit.remoteUrl, [], commit.parents, merge);
+                  var day = String("00" + commit.author.date.getDate()).slice(-2) + "/" + String("00" + commit.author.date.getMonth()).slice(-2);
                   if (commit.author.email in stats)
-                    stats[commit.author.email]++;
-                  else
                   {
-                    stats[commit.author.email] = 1;
-                    labels.push(commit.author.name);
+                    if (day in stats[commit.author.email])
+                      stats[commit.author.email][day]++;
+                    else
+                      stats[commit.author.email][day] = 1;
                   }
+                  else
+                    stats[commit.author.email] = {day: 1};
+
                   if (commits.length == Object.keys(dic).length)
                   {
                     for (var id in dic)
                       for (var p = 0; p < dic[id].parents.length; p++)
                         dic[dic[id].parents[p]].children.push(dic[id]);
                     displayGraph(dic[commits[commits.length - 1].commitId]);
-                    displayStats(stats, labels);
+                    displayStats(stats);
                   }
                 });
               }
