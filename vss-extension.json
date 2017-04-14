@@ -10,6 +10,10 @@
     },
     {
       "addressable": true,
+      "path": "statistics.html"
+    },
+    {
+      "addressable": true,
       "path": "scripts"
     },
     {
@@ -25,11 +29,11 @@
       "path": "images/logo.png"
     }
   ],
-  "version": "0.3.252",
+  "version": "0.3.257",
   "id": "commitnetwork",
   "manifestVersion": 1,
   "publisher": "swapme3",
-  "description": "Graphical view of git commit network.",
+  "description": "Graphical view of git commit network and git statistics.",
   "name": "Commit Network",
   "contributions": [
     {
@@ -44,6 +48,19 @@
       "description": "Adds a commit graph hub to the Code hub group.",
       "type": "ms.vss-web.hub",
       "id": "swapme3.commitnetwork.network"
+    },
+    {
+      "properties": {
+        "uri": "statistics.html",
+        "order": 31,
+        "name": "Statistics"
+      },
+      "targets": [
+        "ms.vss-code-web.code-hub-group"
+      ],
+      "description": "Adds statistics charts.",
+      "type": "ms.vss-web.hub",
+      "id": "swapme3.commitnetwork.statistics"
     }
   ],
   "icons": {

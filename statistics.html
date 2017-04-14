@@ -4,21 +4,19 @@
     <meta charset="UTF-8">
   
     <script src="sdk/scripts/VSS.SDK.js"></script>
-    <link rel="stylesheet" type="text/css" href="gitgraph/src/gitgraph.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
     <script src="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
 </head>
 <body>
-    <div style="overflow-x: scroll;">
-      <canvas id="gitGraph"></canvas>
-    </div>
+  <div style="overflow-y: scroll;">
+    <div class="ct-chart ct-square" id="piechart"></div>
+    <div id="graphchart"></div>
 
     <script type="text/javascript">
       VSS.init({usePlatformScripts: true, usePlatformStyles: true});
     </script>
-
-    <script src= "scripts/graph.js"></script> 
-    <script src="gitgraph/src/gitgraph.js"></script>
-    <script src= "scripts/displayGraph.js"></script> 
-    <script src= "scripts/network.js"></script> 
+    <script src= "scripts/displayStats.js"></script> 
+    <script src= "scripts/stats.js"></script> 
+  </div>
 </body>
 </html>
