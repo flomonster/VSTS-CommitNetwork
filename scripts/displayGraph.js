@@ -15,9 +15,9 @@ var graphConfig = new GitGraph.Template({
             },
             shouldDisplayTooltipsInCompactMod: false,
             tooltipHTMLFormatter: function (commit) {
-              return "<b>" + commit.author + "</b>" +
-              "<div style=\"float: right;\">" + commit.sha1.substr(0, 7) + "</div><br>" +
-              commit.message;
+              return "<div style=\"float:left;\"><b>" + commit.author + "</b></div>" +
+              "<div style=\"float: right;\">" + commit.sha1.substr(0, 7) + "</div><br><div style=\"float:left\">" +
+              commit.message + "</div>";
             }
           }
 

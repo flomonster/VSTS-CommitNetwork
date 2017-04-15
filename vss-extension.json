@@ -10,6 +10,10 @@
     },
     {
       "addressable": true,
+      "path": "theme.css"
+    },
+    {
+      "addressable": true,
       "path": "statistics.html"
     },
     {
@@ -29,7 +33,7 @@
       "path": "images/logo.png"
     }
   ],
-  "version": "0.3.257",
+  "version": "0.3.304",
   "id": "commitnetwork",
   "manifestVersion": 1,
   "publisher": "swapme3",

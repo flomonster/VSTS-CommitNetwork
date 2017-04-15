@@ -1,0 +1,17 @@
+.ct-chart-donut .ct-label {
+ color:white;
+ font-weight:bold;
+ font-size:14px;
+}
+
+.authorname {
+  font-size: 20px;
+  color: #da0a00;
+  left: 15%;
+  position: relative;
+  font-weight: bold;
+}
+
+.ct-series-a .ct-bar, .ct-series-a .ct-line, .ct-series-a .ct-point, .ct-series-a .ct-slice-donut {
+ stroke: #628eb5;
+}

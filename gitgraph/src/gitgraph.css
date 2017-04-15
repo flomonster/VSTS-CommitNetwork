@@ -1,5 +1,6 @@
 .gitgraph-tooltip {
   position: absolute;
+  min-width: 300px;
   margin-top: -15px;
   margin-left: 25px;
   padding: 10px;
