@@ -12,24 +12,38 @@ VSS.require(["VSS/Service", "TFS/VersionControl/GitRestClient"], function (VSS_S
           console.log("Any commits");
         else
         {
-          stats = {};
+          console.log(commits);
+          var stats = {};
+          var names = [];
+          var min = Number.MAX_VALUE, max = Number.MIN_VALUE, high = 0;
+          var zero = new Date(2000, 0, 1);
           for (var i = 0; i < commits.length; i++)
           {
-              var day = String("00" + commits[i].author.date.getDate()).slice(-2) + "/" + String("00" + commits[i].author.date.getMonth()).slice(-2);
+            var dateDiff = Math.round((commits[i].author.date - zero)/(1000*60*60*24));
+            if (dateDiff > max)
+              max = dateDiff;
+            if (dateDiff < min)
+              min = dateDiff;
+
               var email = commits[i].author.email;
 
               if (email in stats)
               {
-                if (day in stats[email])
-                  stats[email][day]++;
+                if (dateDiff in stats[email])
+                  stats[email][dateDiff]++;
                 else
-                  stats[email][day] = 1;
+                  stats[email][dateDiff] = 1;
               }
               else
-                stats[email] = {day: 1};
+              {
+                stats[email] = {dateDiff: 1};
+                names.push(commits[i].author.name);
+              }
+              if (stats[email][dateDiff] > high)
+                high++;
           }
 
-          displayStats(stats);
+          displayStats(stats, names, min, max, high);
         }
       });
     });
