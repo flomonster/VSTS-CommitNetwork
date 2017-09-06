@@ -19,12 +19,12 @@ os.system("jq '.version = \"" + new_version + "\"' < vss-extension.json > tmp")
 os.system("cat tmp > vss-extension.json")
 
 # Clear
-os.remove("tmp")
-os.system("rm *~")
+##os.remove("tmp")
+##os.system("rm *~")
 os.system("rm scripts/*~")
 
 # Package & Publish
 os.system("tfx extension publish --manifest-globs vss-extension.json < token")
 
 # Remove package
-os.system("rm  *.vsix")
+##os.system("rm  *.vsix")

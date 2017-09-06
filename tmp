@@ -4,13 +4,13 @@
     "vso.code"
   ],
   "screenshots": [
-        {
-            "path": "screenshots/screen1.png"
-        },
-        {
-            "path": "screenshots/screen2.png"
-        }
-    ],
+    {
+      "path": "screenshots/screen1.png"
+    },
+    {
+      "path": "screenshots/screen2.png"
+    }
+  ],
   "content": {
     "details": {
       "path": "overview.md"
@@ -50,7 +50,7 @@
       "path": "images/logo.png"
     }
   ],
-  "version": "0.3.327",
+  "version": "0.3.330",
   "id": "commitnetwork",
   "manifestVersion": 1,
   "publisher": "swapme3",
